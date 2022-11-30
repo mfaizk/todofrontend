@@ -20,7 +20,7 @@ const TodoCard = ({ complete, remain }) => {
         {/* Text-Portion of card end */}
         <div className="flex items-center justify-center gap-10 px-3 rounded-lg">
           <AiOutlineEdit size={25} color="#758283" />
-          <AiFillDelete size={25} color="#E21717" />
+          <AiFillDelete size={25} color="#B9345A" />
         </div>
       </div>
     </>

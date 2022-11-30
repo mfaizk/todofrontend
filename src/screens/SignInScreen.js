@@ -1,20 +1,39 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SiGoogle, SiFacebook } from "react-icons/si";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDataStore } from "../store/dataStore";
+import { Account } from "appwrite";
+import client from "../config/appwrite.config";
 
 const SignInScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const formRef = React.useRef();
-  //   const nav = useNavigate();
+  const navigate = useNavigate();
+  const setUser = useDataStore((state) => state.setUser);
+  const account = new Account(client);
   const isClicked = useDataStore((state) => state.isClicked);
   const loginHandler = () => {
     if (email.trim() && password.trim()) {
       //   signinHandler(email, password, nav);
-      formRef.current.reset();
+      account
+        .createEmailSession(email, password)
+        .then((u) => {
+          console.log(u.userId, u.providerUid);
+          setUser({
+            uid: u.userId,
+            email: u.providerUid,
+          });
+
+          navigate("/home", { replace: true });
+          formRef.current.reset();
+        })
+        .catch((e) => {
+          console.log(e.message);
+          toast.error(e.message);
+        });
     } else {
       toast.error('"Fill information"');
     }
