@@ -6,6 +6,7 @@ import SignInScreen from "./screens/SignInScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import "react-toastify/dist/ReactToastify.css";
+import TaskHomeScreen from "./screens/taskScreens/TaskHomeScreen";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/signup" element={<SignUpScreen />} />
           <Route path="/home" element={<HomeScreen />} />
           <Route path="/signin" element={<SignInScreen />} />
+          <Route path="/home/:todo/:todoId" element={<TaskHomeScreen />} />
         </Routes>
       </BrowserRouter>
     </>

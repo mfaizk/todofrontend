@@ -17,6 +17,7 @@ const HomeScreen = () => {
   const inputRef = React.createRef();
   const setId = useDataStore((state) => state.setId);
   const id = useDataStore((state) => state.id);
+  const searchTodo = useDataStore((state) => state.searchTodo);
 
   const setDataInTodo = () => {
     if (!todo.trim()) return toast("Enter some text");
@@ -51,7 +52,13 @@ const HomeScreen = () => {
   return (
     <div className="bg-[#410068] min-h-screen min-w-full flex justify-center items-start sm:items-center flex-col">
       <div className="w-[100%] sm:w-auto flex items-center justify-center  flex-col gap-4">
-        <h1 className="w-[100%] sm:w-[500px] flex items-center justify-center p-3 bg-[#5e0098] ">
+        <h1
+          className="w-[100%] sm:w-[500px] flex items-center justify-center p-3 bg-[#5e0098] "
+          onClick={() => {
+            initialDataLoad();
+            inputRef.current.value = "";
+          }}
+        >
           Todo
         </h1>
         <div className="w-[100%] sm:w-[500px] flex bg-[#5A20CB] items-center ">
@@ -77,6 +84,9 @@ const HomeScreen = () => {
             className="btn btn-primary p-1 rounded-2xl"
             size={40}
             color="white"
+            onClick={() => {
+              searchTodo(id, todo);
+            }}
           />
         </div>
       </div>
@@ -91,7 +101,7 @@ const HomeScreen = () => {
             <TodoCard
               title={e.title}
               complete={10}
-              remain={5}
+              remain={0}
               key={e.createdAt}
               id={id}
               todoId={e._id}
