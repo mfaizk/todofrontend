@@ -15,6 +15,7 @@ const SignInScreen = () => {
   const setUser = useDataStore((state) => state.setUser);
   const account = new Account(client);
   const isClicked = useDataStore((state) => state.isClicked);
+  const setId = useDataStore((state) => state.setId);
   const loginHandler = () => {
     if (email.trim() && password.trim()) {
       //   signinHandler(email, password, nav);
@@ -26,6 +27,7 @@ const SignInScreen = () => {
             uid: u.userId,
             email: u.providerUid,
           });
+          setId(u.$id);
 
           navigate("/home", { replace: true });
           formRef.current.reset();
