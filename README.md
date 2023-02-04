@@ -5,7 +5,7 @@
 
 ## Description
 
-> Sleek and responsive front-end for todo app having all feature that are mention here [api](https://github.com/mfaizk/TodoApi)
+> Sleek and responsive front-end for todo app having all feature that are mention here [api](https://github.com/mfaizk/TodoApiAppWrite)
 
 ## Technology used
 
